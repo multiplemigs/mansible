@@ -1,0 +1,13 @@
+#!/bin/bash
+tar zxf Python-2.7.9.tgz
+cd Python-2.7.9
+./configure --prefix=/usr/local
+make && make altintall
+if [ $? -eq 0 ]
+then
+  echo "Successfully installed python2.7"
+  exit 0
+else
+  echo "Could not install python2.7" >&2
+  exit 1
+fi

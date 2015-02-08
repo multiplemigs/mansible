@@ -1,0 +1,25 @@
+---
+- name: Drop shell scritps for pyntsall file
+  template:
+    src: "{{ item }}"
+    dest: /opt/altpynstal.sh
+    owner: miguel
+    group: root
+    mode: 0755
+  with_first_found:
+    - files:
+        - altpynstall.j2
+      paths:
+        - ../templates
+- name: Drop shell scritps for pyntsall file
+  template:
+    src: "{{ item }}"
+    dest: /var/tmp/setuptools_install.sh
+    owner: miguel
+    group: root
+    mode: 0755
+  with_first_found:
+    - files:
+        - setuptools_install.j2
+      paths:
+        - ../templates
