@@ -11,7 +11,7 @@
   remote_user: miguel
   sudo: True
   tasks:
-    - get_url: https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
+    - get_url: url=https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
 
 - name: drop shell scripts
   hosts: node0
@@ -32,7 +32,7 @@
   remote_user: miguel
   sudo: True
   tasks:
-    - get_url: https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
+    - get_url: url=https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
 
 - name: install setuptools
   hosts: node0
