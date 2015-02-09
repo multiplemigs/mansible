@@ -1,0 +1,44 @@
+---
+- name: selinux req
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - yum: name="libselinux-python" state=latest
+
+
+- name: disable selinux
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - selinux: state=disabled
+
+- name: drop shell altpynstall scripts
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - include: tasks/shelldrop.yml
+    - include: tasks/shelldrop2.yml
+
+- name: shell work for altpyinstall
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - shell: ./altpynstall.sh >> altpylog.txt chdir=/opt
+
+- name: download setuptools
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - get_url: url=https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
+
+- name: install setuptools
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
