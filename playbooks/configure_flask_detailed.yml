@@ -1,27 +1,27 @@
 ---
 - name: Configure Flaskapp node yum prereqs
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - include: tasks/yumprereqs.yml
 
 - name: download Python-2.7.9
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - get_url: url=https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
 
 - name: disable selinux
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - selinux: state=disabled
 
 - name: drop shell altpynstall scripts
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
@@ -29,28 +29,28 @@
     - include: tasks/shelldrop2.yml
 
 - name: shell work for altpyinstall
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - shell: ./altpynstall.sh >> altpylog.txt chdir=/opt
 
 - name: download setuptools
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - get_url: url=https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
 
 - name: install setuptools
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
     - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
 
 - name: re enable selinux
-  hosts: node0
+  hosts: nodes
   remote_user: miguel
   sudo: True
   tasks:
