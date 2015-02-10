@@ -1,34 +1,34 @@
 ---
 - name: Configure Flaskapp node yum prereqs
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - include: tasks/yumprereqs.yml
 
 - name: download Python-2.7.9
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - get_url: url=https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
 
 - name: disable selinux
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - selinux: state=disabled
 
 - name: update sudoers to allow /usr/local/bin
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - lineinfile: dest=/etc/sudoers regexp="^Defaults\s*secure_path" line="Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin" validate='visudo -cf %s'
 
 - name: drop shell altpynstall scripts
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
@@ -36,55 +36,55 @@
     - include: tasks/shelldrop2.yml
 
 - name: shell work for altpyinstall
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - shell: ./altpynstall.sh >> altpylog.txt chdir=/opt
 
 - name: download setuptools
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - get_url: url=https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
 
 - name: install setuptools
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
 
 - name: install virtualenv
-  hosts: nodes
+  hosts: node0
   user: miguel
   sudo: True
   tasks:
     - include: tasks/pipdrop.yml
 
 - name: drop requirements in HOME
-  hosts: nodes
+  hosts: node0
   user: miguel
   tasks:
     - include: tasks/vboxrequirements_config.yml
 
 - name: Create virtual env in HOME/virtualenvs
-  hosts: nodes
+  hosts: node0
   user: miguel
   #sudo: True
   tasks:
     - include: tasks/vboxflaskdrop.yml
 
-- name: revert sudoers to allow original state
-  hosts: nodes
+- name: revert sudoers to original state
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
     - lineinfile: dest=/etc/sudoers regexp="^Defaults\s*secure_path" line="Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin" validate='visudo -cf %s'
 
 - name: re enable selinux
-  hosts: nodes
+  hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
