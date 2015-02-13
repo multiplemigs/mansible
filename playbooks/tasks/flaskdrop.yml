@@ -1,0 +1,3 @@
+---
+- name: Set up Flask 2.7.9 virtualenv
+  pip: requirements=/home/ec2-user/requirements.txt virtualenv=/home/ec2-user/virtualenvs/flaskapp virtualenv_command=virtualenv-2.7

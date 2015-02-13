@@ -1,0 +1,68 @@
+---
+- name: Provision 3 hosts 1 each dev stage prod
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - include: tasks/security_group_create_dev.yml
+  - include: tasks/security_group_create_stage.yml
+  - include: tasks/security_group_create_prod.yml
+  - include: tasks/launch_dev.yml
+  - include: tasks/security_group_assign_dev.yml
+  - include: tasks/launch_stage.yml
+  - include: tasks/security_group_assign_stage.yml
+  - include: tasks/launch_prod.yml
+  - include: tasks/security_group_assign_prod.yml
+  - name: 2 min pause
+    pause: minutes=2
+
+#!#configure
+- name: ensure jenkins and tomcat users present-dev
+  hosts: ["migueltestgroup-dev", "migueltestgroup-stage", "migueltestgroup-prod"]
+  remote_user: ec2-user
+  sudo: True
+  vars:
+  - users:
+     - username: jenkins
+       name: jenkins
+       groups: []
+       uid: 9901
+       ssh_key:
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA8oVK6dw/VpmHpaT4gbIx25hNMqV+o4bZ66T6T7R6DiqEfrlIxFrXRUlsSW9qBPrnRk54VFYasJ1DBqkKobQyZLG1iiAfCtloHqNaZjmKbpgGyHNxasKc0uTaRYl2n/gsEL2SvpdT07VfzhIXx/KXi3cGfIW16aQ1zRwM4QzgLHobUKqVJp0G/NseNhcuOTOhWg+SLhCzp05ETSsrHHFhPmV9t394vNrlzti6qgy1laSPV4JRg4+eOSYrh2eear4uDLVXQZ8wIDGDAmWfTmkrjuwvn1z7PFEu+/+b56C/Tf6L8aRyzl6KV6rSCprSMwy0Kw76D4SpNMqWnzUG2ZqRhQ== jenkins.nimhda@gmail.com"
+     - username: tomcat
+       name: tomcat
+       groups: []
+       uid: 9909
+       ssh_key:
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkJ6V6PnJ7GwZXquCKEFb/dFrwFn1JY94o3eyFGxgRW9W0hMVk9TzX0AYzi0yAFzsrBbOwY6reeQeIINAbuL1F5eerWxFCDU2WR1u3IioLid6prveaOEwlV5s1MNuW3qKOPWlssb9jmluzU82wJbtUL5ih0arZb9XZ4q5xQo/9LqkMZermjBEQ+gumvwjTfp8lFCOHB1rUiysn6G0P6DCxwBmHoiqWHphyksNFRW6FyzpEtVti9UQ6bmgYS2KNMyjWUe8q2+r6L6AKIORDuxDK4oecv4FVMBu0ImiUpPbbHUBXg1GpgurgCo96+pUIZsWKAj531J4vhI8BQc2wd+gl"
+  roles:
+  - mivok0.users
+
+- name: Configure ndarweb dev
+  hosts: migueltestgroup-dev
+  remote_user: ec2-user
+  sudo: True
+  vars_files:
+  - "vars/dev_vars_tomcat.yml"
+  - "vars/dev_secrets_tomcat.yml"
+  roles:
+  - miguel.ndarweb
+
+- name: Configure ndarweb stage
+  hosts: migueltestgroup-stage
+  remote_user: ec2-user
+  sudo: True
+  vars_files:
+  - "vars/stage_vars_tomcat.yml"
+  - "vars/stage_secrets_tomcat.yml"
+  roles:
+  - miguel.ndarweb
+
+- name: Configure ndarweb prod
+  hosts: migueltestgroup-prod
+  remote_user: ec2-user
+  sudo: True
+  vars_files:
+  - "vars/prod_vars_tomcat.yml"
+  - "vars/prod_secrets_tomcat.yml"
+  roles:
+  - miguel.ndarweb

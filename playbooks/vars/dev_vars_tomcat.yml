@@ -1,0 +1,27 @@
+---
+gpop_url: greg 
+gpop_readonly_user: dev
+gpop_full_user: dev
+  
+aws_accesskey: dev-dev
+
+query_sftp_package_root: dev
+query_sftp_package_prefix: dev
+query_db_package_root: dev
+
+jnlp_root_url: dev
+accession_url: dev
+datamanager_url: dev
+datadictionary_url: dev
+guid_url: dev
+jnlp_env: dev
+
+ndar_db_username: dev
+ndar_db_url: dev
+ndar_db_port: dev
+ndar_db_service_name: dev
+
+apportion_db_username: dev
+apportion_db_url: dev
+apportion_db_port: dev
+apportion_db_service_name: dev

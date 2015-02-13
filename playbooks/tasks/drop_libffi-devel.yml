@@ -1,0 +1,4 @@
+---
+- name: drop in libffidevel
+  yum: name="libffi-devel" state=latest
+

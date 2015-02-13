@@ -1,0 +1,22 @@
+---
+- name: Provision 3 hosts 1 each dev stage prod
+  hosts: 127.0.0.1
+  connection: local
+  tasks:  
+  - include: tasks/security_group_create_elk.yml
+  - include: tasks/launch_elasticsearch.yml
+  - include: tasks/security_group_assign_elk_e.yml
+  - include: tasks/launch_logstash.yml
+  - include: tasks/security_group_assign_elk_l.yml
+  - include: tasks/launch_kibana.yml
+  - include: tasks/security_group_assign_elk_k.yml
+
+#    - name: Wait for ssh you derp
+#      pause: minutes=1
+
+#- name: Configure new dev nodes
+#  hosts: migueltestgroup
+#  user: martinezme2
+#  sudo: True
+#  tasks:
+#    - include: tasks/dropsomepkgs.yml

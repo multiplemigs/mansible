@@ -1,0 +1,27 @@
+---
+gpop_url: greg 
+gpop_readonly_user: prod
+gpop_full_user: prod
+  
+aws_accesskey: prod-prod
+
+query_sftp_package_root: prod
+query_sftp_package_prefix: prod
+query_db_package_root: prod
+
+jnlp_root_url: prod
+accession_url: prod
+datamanager_url: prod
+datadictionary_url: prod
+guid_url: prod
+jnlp_env: prod
+
+ndar_db_username: prod
+ndar_db_url: prod
+ndar_db_port: prod
+ndar_db_service_name: prod
+
+apportion_db_username: prod
+apportion_db_url: prod
+apportion_db_port: prod
+apportion_db_service_name: prod

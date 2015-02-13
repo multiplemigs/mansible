@@ -1,0 +1,15 @@
+---
+users_deleted:
+  - username: migueltest
+    name: Miguel
+    groups: []
+    uid: 9903
+    ssh_key: 
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0oZfmBfUi3yF4PRlSlORRDOx1/SsZT8m8QpmbehOGBKcMrr4nBqg8CAsu2ALeMou8mEKTDWlizUTm98KyFfpVyYCbIY867Nm3hOgk6P4WRgC8gQVjOj3tkh/ySrBlZHnO68DJfeW7JbrknN4uz0PvYtZ6YrQsRHu2UQ5JZsltj+hK7pePXumUrUmduKpDP1QHHpLjrU7VkT6FuUme3iFFiu807kwOsP3WrFB+FPAYHt4PZKohDAqWd/VX9IXb4sthInv024NWFSZgaDMRqnXpaKj0VkA+IYLR6G1d2OOGUqNL0imH5PVkMstlyjwtOi/Hg2ir6BKCQsDetVCLUuzF martinezme2@nitrcce"
+
+  - username: migueltest2
+    name: Miguel Two
+    groups: []
+    uid: 9906
+    ssh_key: 
+        - "ssh-rsa blander blah"

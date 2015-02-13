@@ -1,0 +1,13 @@
+---
+- name: Set up ndarweb properties
+  template:
+    src: "{{ item }}"
+    dest: /var/tmp/ndarweb_properties
+    owner: tomcat
+    group: tomcat
+    mode: 0644
+  with_first_found:
+    - files:
+        - ndarweb_properties.j2
+      paths:
+        - /etc/ansible/roles/miguel.ndarweb/templates

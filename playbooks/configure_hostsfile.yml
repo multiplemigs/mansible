@@ -1,0 +1,10 @@
+- hosts: nodes
+  remote_user: martinezme2
+  sudo: yes
+  roles:
+     - role: ajsalminen.hosts
+       hosts_additional_hosts:
+           - address: 192.168.0.1
+             hostnames:
+                 - server.example.com
+                 - server

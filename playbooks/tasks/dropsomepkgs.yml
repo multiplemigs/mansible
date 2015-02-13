@@ -1,0 +1,13 @@
+---
+#- name: yumdate
+#  yum: name=* state=latest
+
+- name: drop dat pip
+  yum: name=python-pip state=latest
+
+- name: drop dem broto jibbers
+  pip: name=boto state=latest
+
+- name: drop dem aws cli jibbers
+  pip: name=awscli state=latest
+

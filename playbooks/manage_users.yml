@@ -1,0 +1,6 @@
+---
+- hosts: tag_Name_dev*
+  remote_user: martinezme2
+  sudo: True
+  roles:
+   - mivok0.users

@@ -1,0 +1,27 @@
+---
+gpop_url: greg 
+gpop_readonly_user: stage
+gpop_full_user: stage
+
+aws_accesskey: stage-stage
+
+query_sftp_package_root: stage
+query_sftp_package_prefix: stage
+query_db_package_root: stage
+
+jnlp_root_url: stage
+accession_url: stage
+datamanager_url: stage
+datadictionary_url: stage
+guid_url: stage
+jnlp_env: stage
+
+ndar_db_username: stage
+ndar_db_url: stage
+ndar_db_port: stage
+ndar_db_service_name: stage
+
+apportion_db_username: stage
+apportion_db_url: stage
+apportion_db_port: stage
+apportion_db_service_name: stage

@@ -1,0 +1,13 @@
+---
+- name: Set up tomcat properties
+  template:
+    src: "{{ item }}"
+    dest: /var/tmp/tomcat_properties
+    owner: tomcat
+    group: tomcat
+    mode: 0644
+  with_first_found:
+    - files:
+        - tomcat_properties.j2
+      paths:
+        - /etc/ansible/roles/miguel.tomcat/templates

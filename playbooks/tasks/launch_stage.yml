@@ -1,0 +1,14 @@
+---
+- name: Launch Stage
+  local_action:
+    module: ec2
+    region: us-east-1
+    keypair: DevStack
+    group: migueltestgroup-stage
+    instance_type: t2.micro
+    image: ami-c496dbac
+    vpc_subnet_id: subnet-e20152a4
+    assign_public_ip: yes
+    count: 1
+    wait: yes
+  register: ec2

@@ -1,0 +1,57 @@
+#
+# Sample project properties file
+#
+
+# This is an example file that contains the keys used by the application
+# The purpose of this file is to keep sensitive connection information out of the repository and deployed project
+
+# You should copy this file, remove the ".sample" suffix, and enter valid values for the keys below
+# The location for the final file is specified in applicationContext.xml via the PropertyPlaceholderConfigurer location property
+# Under your user home, create a directory named "ndar" and copy your version of this file there
+
+# Example "C:/Users/mckennapc/ndar/ndarweb.properties" or "/home/linuxuser/ndar/ndarweb.properties"
+
+gpop.url={{ gpop_url }}
+
+gpop.readonly.user={{ gpop_readonly_user }}
+gpop.readonly.password={{ gpop_readonly_password }}
+
+gpop.full.user={{ gpop_full_user }}
+gpop.full.password={{ gpop_full_password }}
+
+#AWS Keys
+aws.accesskey={{ aws_accesskey }}
+aws.secretkey={{ aws_secretkey }}
+
+query.sftp.package.root={{ query_sftp_package_root }}
+query.sftp.package.prefix={{ query_sftp_package_prefix }}
+query.db.package.root={{ query_db_package_root }}
+
+#possible revist?
+ftp://ftp.root=ndar_data <ftp://ftp.root=ndar_data/> 
+collection.attachment.dir=CollectionAttachments
+study.attachment.dir=StudyAttachments
+study.result.dir=StudyResults
+
+helpEmailAddress=ndarhelp@mail.nih.gov
+helpEmailLabel=NDAR Help Desk
+documentsPath=https\://s3.amazonaws.com/NDARExternalResources/Documents/
+
+# JNLP
+jnlp.root.url={{ jnlp_root_url }}
+accession.url={{ accession_url }}
+datamanager.url={{ datamanager_url }}
+datadictionary.url={{ datadictionary_url }}
+jnlp.client.version=5.1
+ndar.endpoint=Gluster
+guid.url={{ guid_url }}
+jnlp.env={{ jnlp_env }}
+
+ndar.db.username={{ ndar_db_username }}
+ndar.db.password={{ ndar_db_secret }}
+ndar.db.url=jdbc:-Oracle:thin:@{{ ndar_db_url }}:{{ ndar_db_port }}/{{ ndar_db_service_name }}
+
+apportion.db.username={{ apportion_db_username }}
+apportion.db.password={{ apportion_db_secret }}
+apportion.db.url=jdbc:-Oracle:thin:@{{ apportion_db_url }}:{{ apportion_db_port }}/{{ apportion_db_service_name }}
+

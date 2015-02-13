@@ -1,0 +1,4 @@
+---
+- name: Flask git clone to HOME/virtualenvs/flaskapp
+  git: repo=http://jsmith@git.nimhda.org/scm/gdb/network-viz.git
+       dest=/home/ec2-user/virtualenvs/flaskapp
