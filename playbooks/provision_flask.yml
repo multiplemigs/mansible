@@ -1,12 +1,12 @@
 ---
-- name: Provision Jason Flask machine
+- name: Provision ec2 Flask machine
   hosts: 127.0.0.1
   connection: local
   tasks:
     - name: Create security group
       local_action: 
         module: ec2_group
-        name: Jason-Flask
+        name: Flaskapp
         vpc_id: vpc-d57664b7
         description: Open access to ec2 test dev instances
         region: us-east-1
@@ -21,7 +21,7 @@
         module: ec2
         region: us-east-1
         keypair: DevStack
-        group: Jason-Flask
+        group: Flaskapp
         instance_type: t2.small
         image: ami-ea8fcc82
         vpc_subnet_id: subnet-e20152a4
@@ -31,7 +31,7 @@
       register: ec2
 
     - name: Add instances to host group
-      local_action: add_host hostname={{ item.public_ip }} groupname=Jason-Flask
+      local_action: add_host hostname={{ item.public_ip }} groupname=Flaskapp
       with_items: ec2.instances
 
     - name: tag as flaskdev-
@@ -45,27 +45,27 @@
       pause: minutes=1
 
 - name: libffi requirement
-  hosts: Jason-Flask
+  hosts: Flaskapp
   user: ec2-user
   sudo: True
   tasks:
     - include: tasks/drop_libffi-devel.yml
 
 - name: drop requirements in HOME
-  hosts: Jason-Flask
+  hosts: Flaskapp
   user: ec2-user
   tasks:
     - include: tasks/requirements_config.yml
 
 - name: Create virtual env in HOME/virtualenvs
-  hosts: Jason-Flask
+  hosts: Flaskapp
   user: ec2-user
   #sudo: True
   tasks:
     - include: tasks/flaskdrop.yml
 
 #- name: Clone flask code repo
-#  hosts: Jason-Flask
+#  hosts: Flaskapp
 #  user: ec2-user
 #  tasks:
 #    - include: tasks/gitflask.yml
