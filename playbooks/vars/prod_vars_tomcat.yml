@@ -16,10 +16,10 @@ datadictionary_url: prod
 guid_url: prod
 jnlp_env: prod
 
-ndar_db_username: prod
-ndar_db_url: prod
-ndar_db_port: prod
-ndar_db_service_name: prod
+webapp_db_username: prod
+webapp_db_url: prod
+webapp_db_port: prod
+webapp_db_service_name: prod
 
 apportion_db_username: prod
 apportion_db_url: prod

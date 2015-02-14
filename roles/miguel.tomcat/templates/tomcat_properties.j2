@@ -7,9 +7,7 @@
 
 # You should copy this file, remove the ".sample" suffix, and enter valid values for the keys below
 # The location for the final file is specified in applicationContext.xml via the PropertyPlaceholderConfigurer location property
-# Under your user home, create a directory named "ndar" and copy your version of this file there
-
-# Example "C:/Users/mckennapc/ndar/ndarweb.properties" or "/home/linuxuser/ndar/ndarweb.properties"
+# Under your user home, create a directory named "webapp" and copy your version of this file there
 
 gpop.url={{ gpop_url }}
 
@@ -28,14 +26,14 @@ query.sftp.package.prefix={{ query_sftp_package_prefix }}
 query.db.package.root={{ query_db_package_root }}
 
 #possible revist?
-ftp://ftp.root=ndar_data <ftp://ftp.root=ndar_data/> 
+ftp://ftp.root=webapp_data <ftp://ftp.root=webapp_data/> 
 collection.attachment.dir=CollectionAttachments
 study.attachment.dir=StudyAttachments
 study.result.dir=StudyResults
 
-helpEmailAddress=ndarhelp@mail.nih.gov
-helpEmailLabel=NDAR Help Desk
-documentsPath=https\://s3.amazonaws.com/NDARExternalResources/Documents/
+helpEmailAddress=webapphelp@blah.blah
+helpEmailLabel=webapp Help Desk
+documentsPath=https\://s3.amazonaws.com/webappExternalResources/Documents/
 
 # JNLP
 jnlp.root.url={{ jnlp_root_url }}
@@ -43,13 +41,13 @@ accession.url={{ accession_url }}
 datamanager.url={{ datamanager_url }}
 datadictionary.url={{ datadictionary_url }}
 jnlp.client.version=5.1
-ndar.endpoint=Gluster
+webapp.endpoint=Gluster
 guid.url={{ guid_url }}
 jnlp.env={{ jnlp_env }}
 
-ndar.db.username={{ ndar_db_username }}
-ndar.db.password={{ ndar_db_secret }}
-ndar.db.url=jdbc:-Oracle:thin:@{{ ndar_db_url }}:{{ ndar_db_port }}/{{ ndar_db_service_name }}
+webapp.db.username={{ webapp_db_username }}
+webapp.db.password={{ webapp_db_secret }}
+webapp.db.url=jdbc:-Oracle:thin:@{{ webapp_db_url }}:{{ webapp_db_port }}/{{ webapp_db_service_name }}
 
 apportion.db.username={{ apportion_db_username }}
 apportion.db.password={{ apportion_db_secret }}

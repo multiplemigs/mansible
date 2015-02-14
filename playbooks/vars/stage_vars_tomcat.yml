@@ -16,10 +16,10 @@ datadictionary_url: stage
 guid_url: stage
 jnlp_env: stage
 
-ndar_db_username: stage
-ndar_db_url: stage
-ndar_db_port: stage
-ndar_db_service_name: stage
+webapp_db_username: stage
+webapp_db_url: stage
+webapp_db_port: stage
+webapp_db_service_name: stage
 
 apportion_db_username: stage
 apportion_db_url: stage

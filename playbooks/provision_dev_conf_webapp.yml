@@ -27,13 +27,13 @@
        groups: []
        uid: 9901
        ssh_key:
-           - "ssh-rsa blah pub@key"
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvrr170SCTpihdQ91U9vg2cXh7+5T04AXbQrLPHYZcvN5Ay7zbko1O37glXwThN0Q++tGGnNyyodpbriHh722H6QwYCy+YY8WjwZKABH3b64MemEbB1bRWjc6ViJxc3a7eTdGylufHyWvknVb+wD11y4hOYTOj0AHGlqY0vLmcWRSoyBbPzcA0Q8chT26ILzCTzx1enE/f1uXhgz6naVRStfkDgaVXFhPEZlbsbpx3Q+Rz6+ccPQSbz2kVO87na7kfbM/MmrMmmCybZmLWSx05oYjIA/CZ1+KLLYv1QLjdjBvEfdzendc+Cg6MUa5f4WtSpWDyyPIyU9Os2J0hl+MB"
      - username: tomcat
        name: tomcat
        groups: []
        uid: 9909
        ssh_key:
-           - "ssh-rsa blah pub@key"
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvrr170SCTpihdQ91U9vg2cXh7+5T04AXbQrLPHYZcvN5Ay7zbko1O37glXwThN0Q++tGGnNyyodpbriHh722H6QwYCy+YY8WjwZKABH3b64MemEbB1bRWjc6ViJxc3a7eTdGylufHyWvknVb+wD11y4hOYTOj0AHGlqY0vLmcWRSoyBbPzcA0Q8chT26ILzCTzx1enE/f1uXhgz6naVRStfkDgaVXFhPEZlbsbpx3Q+Rz6+ccPQSbz2kVO87na7kfbM/MmrMmmCybZmLWSx05oYjIA/CZ1+KLLYv1QLjdjBvEfdzendc+Cg6MUa5f4WtSpWDyyPIyU9Os2J0hl+MB"
   roles:
   - mivok0.users
 
@@ -45,7 +45,7 @@
   - "vars/dev_vars_tomcat.yml"
   - "vars/dev_secrets_tomcat.yml"
   roles:
-  - miguel.ndarweb
+  - miguel.webapp
 
 #- name: Configure webapp stage
   #hosts: migueltestgroup-stage
@@ -55,7 +55,7 @@
   #- "vars/stage_vars_tomcat.yml"
   #- "vars/stage_secrets_tomcat.yml"
   #roles:
-  #- miguel.ndarweb
+  #- miguel.webapp
 #
 #- name: Configure webapp prod
   #hosts: migueltestgroup-prod
@@ -65,4 +65,4 @@
   #- "vars/prod_vars_tomcat.yml"
   #- "vars/prod_secrets_tomcat.yml"
   #roles:
-  #- miguel.ndarweb
+  #- miguel.webapp

@@ -10,14 +10,14 @@
        groups: []
        uid: 9901
        ssh_key:
-           - "ssh-rsa blah pub@key"
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvrr170SCTpihdQ91U9vg2cXh7+5T04AXbQrLPHYZcvN5Ay7zbko1O37glXwThN0Q++tGGnNyyodpbriHh722H6QwYCy+YY8WjwZKABH3b64MemEbB1bRWjc6ViJxc3a7eTdGylufHyWvknVb+wD11y4hOYTOj0AHGlqY0vLmcWRSoyBbPzcA0Q8chT26ILzCTzx1enE/f1uXhgz6naVRStfkDgaVXFhPEZlbsbpx3Q+Rz6+ccPQSbz2kVO87na7kfbM/MmrMmmCybZmLWSx05oYjIA/CZ1+KLLYv1QLjdjBvEfdzendc+Cg6MUa5f4WtSpWDyyPIyU9Os2J0hl+MB"
   - users:
      - username: tomcat
        name: tomcat
        groups: []
        uid: 9909
        ssh_key:
-           - "ssh-rsa blah pub@key"
+           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvrr170SCTpihdQ91U9vg2cXh7+5T04AXbQrLPHYZcvN5Ay7zbko1O37glXwThN0Q++tGGnNyyodpbriHh722H6QwYCy+YY8WjwZKABH3b64MemEbB1bRWjc6ViJxc3a7eTdGylufHyWvknVb+wD11y4hOYTOj0AHGlqY0vLmcWRSoyBbPzcA0Q8chT26ILzCTzx1enE/f1uXhgz6naVRStfkDgaVXFhPEZlbsbpx3Q+Rz6+ccPQSbz2kVO87na7kfbM/MmrMmmCybZmLWSx05oYjIA/CZ1+KLLYv1QLjdjBvEfdzendc+Cg6MUa5f4WtSpWDyyPIyU9Os2J0hl+MB"
   roles:
   - mivok0.users
 

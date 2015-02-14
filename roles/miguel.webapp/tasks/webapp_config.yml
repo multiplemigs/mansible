@@ -1,5 +1,5 @@
 ---
-- name: Set up ndarweb properties
+- name: Set up webapp properties
   template:
     src: "{{ item }}"
     dest: /var/tmp/ndarweb_properties
@@ -10,4 +10,4 @@
     - files:
         - ndarweb_properties.j2
       paths:
-        - /etc/ansible/roles/miguel.ndarweb/templates
+        - /etc/ansible/roles/miguel.webapp/templates

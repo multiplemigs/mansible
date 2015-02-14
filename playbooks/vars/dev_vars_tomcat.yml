@@ -16,10 +16,10 @@ datadictionary_url: dev
 guid_url: dev
 jnlp_env: dev
 
-ndar_db_username: dev
-ndar_db_url: dev
-ndar_db_port: dev
-ndar_db_service_name: dev
+webapp_db_username: dev
+webapp_db_url: dev
+webapp_db_port: dev
+webapp_db_service_name: dev
 
 apportion_db_username: dev
 apportion_db_url: dev

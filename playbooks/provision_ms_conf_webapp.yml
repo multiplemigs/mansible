@@ -37,7 +37,7 @@
   roles:
   - mivok0.users
 
-- name: Configure ndarweb dev
+- name: Configure webapp dev
   hosts: migueltestgroup-dev
   remote_user: ec2-user
   sudo: True
@@ -45,9 +45,9 @@
   - "vars/dev_vars_tomcat.yml"
   - "vars/dev_secrets_tomcat.yml"
   roles:
-  - miguel.ndarweb
+  - miguel.webapp
 
-- name: Configure ndarweb stage
+- name: Configure webapp stage
   hosts: migueltestgroup-stage
   remote_user: ec2-user
   sudo: True
@@ -55,9 +55,9 @@
   - "vars/stage_vars_tomcat.yml"
   - "vars/stage_secrets_tomcat.yml"
   roles:
-  - miguel.ndarweb
+  - miguel.webapp
 
-- name: Configure ndarweb prod
+- name: Configure webapp prod
   hosts: migueltestgroup-prod
   remote_user: ec2-user
   sudo: True
@@ -65,4 +65,4 @@
   - "vars/prod_vars_tomcat.yml"
   - "vars/prod_secrets_tomcat.yml"
   roles:
-  - miguel.ndarweb
+  - miguel.webapp
