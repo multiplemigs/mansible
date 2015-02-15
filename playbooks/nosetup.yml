@@ -1,12 +1,4 @@
 ---
-- name: selinux req
-  hosts: node0
-  remote_user: miguel
-  sudo: True
-  tasks:
-    - yum: name="libselinux-python" state=latest
-
-
 - name: disable selinux
   hosts: node0
   remote_user: miguel
@@ -42,3 +34,10 @@
   sudo: True
   tasks:
     - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
+
+- name: re enable selinux
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - selinux: policy=targeted state=enforcing

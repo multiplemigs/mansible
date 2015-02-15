@@ -13,3 +13,5 @@
   yum: name="sqlite-devel" state=latest
 - name: install altpyreq
   yum: name="libffi-devel" state=latest
+- name: altpyreq (selinux)
+  yum: name="libselinux-python" state=latest
