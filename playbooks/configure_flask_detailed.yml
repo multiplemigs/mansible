@@ -1,28 +1,19 @@
 ---
-- name: Configure Flaskapp node
+- name: Configure Flaskapp node yum prereqs
   hosts: node0
   remote_user: miguel
   sudo: True
   tasks:
-    - name: install the 'Development tools' package group
-      yum: name="@Development tools" state=present
-      name: install altpyreq  
-      yum: name="zlib-devel" state=latest
-      name: install altpyreq
-      yum: name="bzip2-devel" state=latest
-      name: install altpyreq
-      yum: name="openssl-devel" state=latest
-      name: install altpyreq
-      yum: name="ncurses-devel" state=latest
-      name: install altpyreq
-      yum: name="sqlite-devel" state=latest
-      name: install altpyreq
-      yum: name="libffi-devel" state=latest
-      name: download Python-2.7.9
-      get_url: https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
-      name: shell work for altpyinstall
-      shell: tasks/altpynstall.sh >> altpylog.txt chdir=/opt
-      name: download setuptools
-      geturl: https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
-      name: install setuptools
-      shell: tasks/setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
+    - include: task/yumprereqs.yml
+
+- name: download Python-2.7.9
+  get_url: https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
+
+- name: shell work for altpyinstall
+  shell: tasks/altpynstall.sh >> altpylog.txt chdir=/opt
+
+- name: download setuptools
+  geturl: https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
+
+- name: install setuptools
+  shell: tasks/setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
