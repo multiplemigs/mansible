@@ -7,13 +7,29 @@
     - include: task/yumprereqs.yml
 
 - name: download Python-2.7.9
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
   get_url: https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz dest=/opt/Python-2.7.9.tgz mode=755
 
 - name: shell work for altpyinstall
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
   shell: tasks/altpynstall.sh >> altpylog.txt chdir=/opt
 
 - name: download setuptools
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
   geturl: https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py dest=/var/tmp
 
 - name: install setuptools
+  hosts: node0
+  remote_user: miguel
+  sudo: True
+  tasks:
   shell: tasks/setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
