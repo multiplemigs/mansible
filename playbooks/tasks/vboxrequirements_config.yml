@@ -1,0 +1,10 @@
+---
+- name: Drop requirements file
+  template:
+    src: "{{ item }}"
+    dest: /home/miguel/requirements.txt
+    owner: miguel
+    group: miguel
+    mode: 0644
+  with_fileglob:
+    - ../templates/requirements.j2

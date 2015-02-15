@@ -49,6 +49,19 @@
   tasks:
     - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
 
+- name: drop requirements in HOME
+  hosts: nodes
+  user: miguel
+  tasks:
+    - include: tasks/vboxrequirements_config.yml
+
+- name: Create virtual env in HOME/virtualenvs
+  hosts: nodes
+  user: miguel
+  #sudo: True
+  tasks:
+    - include: tasks/vboxflaskdrop.yml
+
 - name: re enable selinux
   hosts: nodes
   remote_user: miguel
