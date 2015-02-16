@@ -49,6 +49,13 @@
   tasks:
     - shell: ./setuptools_install.sh >> setuptools_install_log.txt chdir=/var/tmp
 
+- name: install virtualenv
+  hosts: nodes
+  user: miguel
+  sudo: True
+  tasks:
+    - include: tasks/pipdrop.yml
+
 - name: drop requirements in HOME
   hosts: nodes
   user: miguel

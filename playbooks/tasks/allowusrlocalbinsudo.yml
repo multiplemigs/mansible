@@ -1,0 +1,7 @@
+---
+- name: update sudoers to allow /usr/local/bin
+  hosts: nodes
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - lineinfile: dest=/etc/sudoers regexp="secure_path = /sbin:/bin:/usr/sbin:/usr/bin" insertafter="secure_path = /sbin:/bin:/usr/sbin:/usr/bin" ":/usr/local/bin"
