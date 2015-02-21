@@ -25,7 +25,7 @@
   remote_user: miguel
   sudo: True
   tasks:
-    - lineinfile: dest=/etc/sudoers regexp="secure_path = /sbin:/bin:/usr/sbin:/usr/bin" insertafter="^#Listen " line="Listen 8080"
+    - lineinfile: dest=/etc/sudoers regexp="^Defaults\s*secure_path" line="Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin" validate='visudo -cf %s'
 
 - name: drop shell altpynstall scripts
   hosts: nodes
@@ -75,6 +75,13 @@
   #sudo: True
   tasks:
     - include: tasks/vboxflaskdrop.yml
+
+- name: revert sudoers to allow original state
+  hosts: nodes
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - lineinfile: dest=/etc/sudoers regexp="^Defaults\s*secure_path" line="Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin" validate='visudo -cf %s'
 
 - name: re enable selinux
   hosts: nodes
