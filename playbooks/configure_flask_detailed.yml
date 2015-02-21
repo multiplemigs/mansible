@@ -20,6 +20,13 @@
   tasks:
     - selinux: state=disabled
 
+- name: update sudoers to allow /usr/local/bin
+  hosts: nodes
+  remote_user: miguel
+  sudo: True
+  tasks:
+    - lineinfile: dest=/etc/sudoers regexp="secure_path = /sbin:/bin:/usr/sbin:/usr/bin" insertafter="^#Listen " line="Listen 8080"
+
 - name: drop shell altpynstall scripts
   hosts: nodes
   remote_user: miguel
