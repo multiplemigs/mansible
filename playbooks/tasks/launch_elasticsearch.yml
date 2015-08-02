@@ -3,11 +3,11 @@
   local_action:
     module: ec2
     region: us-east-1
-    keypair: DevStack
-    group: migueltestgroup-elkstack
-    instance_type: t2.small
-    image: ami-c496dbac
-    vpc_subnet_id: subnet-e20152a4
+    keypair: migkey
+    group: helkstack
+    instance_type: t2.micro
+    image: ami-c21025aa
+    vpc_subnet_id: subnet-92b2d0a8
     assign_public_ip: yes
     count: 2
     wait: yes

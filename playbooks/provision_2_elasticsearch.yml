@@ -1,0 +1,8 @@
+---
+- name: Provision two elastic search node
+  hosts: 127.0.0.1
+  connection: local
+  tasks:  
+  - include: tasks/security_group_create_elk.yml
+  - include: tasks/launch_elasticsearch.yml
+  - include: tasks/security_group_assign_elk_e.yml

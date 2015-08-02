@@ -2,24 +2,20 @@
 - name: Create elkstack security group
   local_action: 
     module: ec2_group
-    name: migueltestgroup-elkstack
+    name: helkstack
     description: Open access to ec2 test dev instances
     region: us-east-1
-    vpc_id: vpc-d57664b7 
+    vpc_id: vpc-a3f345c6
     rules:
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: 0.0.0.0/0
+        cidr_ip: 173.73.10.241/32
       - proto: tcp
         from_port: 80
         to_port: 80
         cidr_ip: 0.0.0.0/0
       - proto: tcp
         from_port: 9200
-        to_port: 9200
-        cidr_ip: 0.0.0.0/0
-      - proto: tcp
-        from_port: 9300
-        to_port: 9300
+        to_port: 9400
         cidr_ip: 0.0.0.0/0
