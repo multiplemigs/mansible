@@ -9,7 +9,7 @@ while getopts ":n:b:s:" o; do
             buildname=${OPTARG}
             ;;
         s)
-            buildname=${OPTARG}
+            source=${OPTARG}
             ;;
     esac
 done
@@ -22,7 +22,7 @@ if [ -z "${tagname}" ] || [ -z "${buildname}" ]; then
 fi
 
 #Run playbook for node provision
-ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbooks/provision_dev_conf_tomcatapp.yml --vault-password-file /home/jenkins/.vecsss --extra-vars "tagname=${tagname} buildname=${buildname} source=${soure}"
+ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbooks/provision_dev_conf_tomcatapp.yml --vault-password-file /home/jenkins/.vecsss --extra-vars "tagname=${tagname} buildname=${buildname} source=${source}"
 
 #Error check
 if [ $? -eq 0 ]
