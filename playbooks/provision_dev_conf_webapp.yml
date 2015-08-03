@@ -55,7 +55,7 @@
   remote_user: ec2-user
   sudo: True
   tasks:
-  - lineinfile: dest=/home/tomcat/.ssh/known_hosts regexp="^ {{ hostname }}" line="{{ hostname }} {{ key variable }}"
+  - lineinfile: dest=/home/tomcat/.ssh/known_hosts regexp="^ {{ jumphostname }}" line="{{ jumphostname }} {{ key variable }}"
 
 - name: shell work for war movement
   gather_facts: False
