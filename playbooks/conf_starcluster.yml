@@ -1,0 +1,180 @@
+---
+- name: Configuring Starcluster
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs.yml
+  - include: tasks/screqs.yml
+
+- name: move old java stuff
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mv /usr/bin/java /usr/bin/java6 && ln -s /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java /usr/bin/java7 &&
+ln -s /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java /usr/bin/java"
+
+- name: bwa install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/bwa && curl -L http://sourceforge.net/projects/bio-bwa/files/bwa-0.7.5a.tar.bz2/download -o /usr/bin/bwa/bwa-0.7.5a.tar.bz2 && cd /usr/bin/bwa && tar -jxf bwa-0.7.5a.tar.bz2 && cd bwa-0.7.5a && make && ln -s /usr/bin/bwa/bwa-0.7.5a/bwa /usr/local/bin/bwa"
+
+- name: gatk install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/gatk && cd /usr/bin/gatk && wget https://s3.amazonaws.com/asdjre/GenomeAnalysisTK-2.7-2.tar.bz2 && tar -jxf GenomeAnalysisTK-2.7-2.tar.bz2 && ln -s /usr/bin/gatk/GenomeAnalysisTK-2.7-2-g6bda569 /usr/local/bin/gatk"
+
+- name: picard install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/picard && curl -L http://sourceforge.net/projects/picard/files/picard-tools/1.100/picard-tools-1.100.zip/download -o /usr/bin/picard/picard-tools-1.100.zip && cd /usr/bin/picard/ && unzip picard-tools-1.100.zip && ln -s /usr/bin/picard/picard-tools-1.100 /usr/local/bin/picard"
+
+- name: install samtools
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs2.yml
+
+- name: bedtools install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/bedtools && curl http://bedtools.googlecode.com/files/BEDTools.v2.17.0.tar.gz -o /usr/bin/bedtools/BEDTools.v2.17.0.tar.gz && cd /usr/bin/bedtools && tar -zxvf BEDTools.*.tar.gz && cd bedtools-2.17.0/ && make && cd /usr/local/bin && ln -s /usr/bin/bedtools/bedtools-2.17.0/bin/* ."
+
+- name: vcftools install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/vcftools && curl -L http://sourceforge.net/projects/vcftools/files/vcftools_0.1.11.tar.gz/download -o /usr/bin/vcftools/vcftools_0.1.11.tar.gz && cd /usr/bin/vcftools && tar xzf vcftools_0.1.11.tar.gz && cd vcftools_0.1.11/ && make && ln -s /usr/bin/vcftools/vcftools_0.1.11/bin /usr/local/bin/vcftools"
+
+- name: htslib install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "cd /usr/bin && git clone https://github.com/samtools/htslib.git && cd /usr/bin/htslib && make && make install"
+
+#already installed
+#- name: bcftools install
+  #hosts: ["security_group__sc-{{ clustername }}"]
+  #gather_facts: False
+  #remote_user: root
+  ##sudo: True
+  #tasks:
+  #- shell: "cd /usr/bin && git clone https://github.com/samtools/bcftools.git && cd bcftools && make clean && make"
+
+- name: qplot install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/qplot && cd /usr/bin/qplot && wget http://www.sph.umich.edu/csg/zhanxw/software/qplot/qplot-source.20130627.tar.gz && tar xzvf qplot-source.20130627.tar.gz&& rm -f *.gz"
+
+- name: install cmake
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs3.yml
+
+- name: freebayes install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "cd /usr/bin && git clone --recursive git://github.com/ekg/freebayes.git && cd freebayes/ && make"
+
+- name: bamutil install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "cd /usr/bin && wget http://genome.sph.umich.edu/w/images/7/70/BamUtilLibStatGen.1.0.13.tgz && tar -zxvf BamUtilLibStatGen.1.0.13.tgz && mv /usr/bin/bamUtil_1.0.13 /usr/bin/bamUtil && cd /usr/bin/bamUtil && make all"
+
+
+- name: drop shell vanilla scripts
+  hosts: ["security_group__sc-{{ clustername }}"]
+  remote_user: root
+  tasks:
+    - include: tasks/Rscriptvanilla.yml
+
+- name: vanilla install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: /root/vanilla.sh chdir=/root
+
+- name: Configuring Starcluster
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs4.yml
+  - include: tasks/screqs2.yml
+
+- name: Configuring Starcluster
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs5.yml
+
+- name: cpanm command
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "cpanm Parallel::ForkManager"
+
+- name: collectd install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/collectd && cd /usr/bin/collectd && wget http://collectd.org/files/collectd-5.4.0.tar.bz2 && tar jxf collectd-*.tar.bz2 && cd collectd-* && ./configure && make all install"
+
+- name: iotp install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "mkdir /usr/bin/iotop && cd /usr/bin/iotop && wget http://guichaz.free.fr/iotop/files/iotop-0.6.tar.gz && tar -xzf iotop-0.6.tar.gz && cd iotop-0.6 && python setup.py install"
+
+- name: Configuring Starcluster
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - include: tasks/aptreqs6.yml
+

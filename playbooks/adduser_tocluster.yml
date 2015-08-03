@@ -1,0 +1,8 @@
+---
+- name: ensure user is present
+  hosts: [ "security_group__sc-{{ cluster }}" ]
+  remote_user: root
+  vars_files:
+  - "/etc/varsansible/uservars/user_{{ name }}"
+  roles:
+  - mivok0.users

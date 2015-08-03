@@ -1,0 +1,9 @@
+- name: Drop shell scritps for vanilla install
+  template:
+    src: "{{ item }}"
+    dest: /root/vanilla.sh
+    owner: root
+    group: root
+    mode: 0755
+  with_fileglob:
+        - /etc/varsansible/templates/vanilla.j2

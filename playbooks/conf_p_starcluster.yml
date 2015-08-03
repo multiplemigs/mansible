@@ -1,0 +1,32 @@
+---
+- name: Post configure Starcluster
+  hosts: ["security_group__sc-{{ clustername }}"]
+  remote_user: root
+  vars_files: 
+  - "/etc/varsansible/secretvars/starcluster_secret.yml"
+  tasks:
+  - include: tasks/s3config.yml
+
+- name: fqvalidator install
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  #sudo: True
+  tasks:
+  - shell: "cd /usr/bin && git clone https://github.com/statgen/fastQValidator.git"
+
+- name: install missing pips
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  tasks:  
+  - pip: name=ndar_unpack state=latest
+  - pip: name=nibabel state=latest
+
+- name: apt install some missing pkgs
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  tasks:
+  - apt: name="minc-tools" state=latest
+  - apt: name="unp" state=latest

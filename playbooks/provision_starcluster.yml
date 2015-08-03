@@ -1,0 +1,9 @@
+---
+- name: Provision starclu nodes
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: False
+  tasks:
+  - command: starcluster start -c ce_cluster "{{ clustername }}"
+    register: command_result
+    failed_when: "command_result.rc != 0"

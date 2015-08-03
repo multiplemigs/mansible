@@ -1,0 +1,10 @@
+---
+- name: ensure jenkins present
+  hosts: 127.0.0.1
+  connection: local
+  sudo: True
+  vars_files:
+  - "/etc/varsansible/uservars/user_alfred"
+  roles:
+  - mivok0.users
+

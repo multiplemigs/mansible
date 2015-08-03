@@ -1,0 +1,9 @@
+- name: Drop shell scritps for s3cmd config
+  template:
+    src: "{{ item }}"
+    dest: /root/.s3cfg
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+        - /etc/varsansible/templates/s3cfg.j2

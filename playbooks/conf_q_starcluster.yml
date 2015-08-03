@@ -1,0 +1,7 @@
+---
+- name: shell fix for sge 
+  hosts: ["tag_Name_master02"]
+  gather_facts: True
+  remote_user: root
+  tasks:
+  - shell: ". /home/ubuntu/nitrcce/bin/starcluster.sh && add_cluster_user obenshaindw && configure_master && fixnode node001 && fixnode node002"

@@ -1,0 +1,10 @@
+---
+- name: Drop shell scritps for curl deploy
+  template:
+    src: "{{ item }}"
+    dest: /home/tomcat/ndar/curldeploy.sh
+    owner: tomcat
+    group: tomcat
+    mode: 0755
+  with_fileglob:
+        - /etc/varsansible/templates/curldeploy.j2

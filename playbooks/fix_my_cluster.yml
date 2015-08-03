@@ -1,0 +1,15 @@
+---
+## to drop shell script to fix nodes
+- name: drop shell vanilla scripts
+  hosts: ["security_group__sc-{{ clustername }}"]
+  remote_user: root
+  tasks:
+    - include: tasks/cluster_fix.yml
+
+- name: run clusterfix script
+  hosts: ["security_group__sc-{{ clustername }}"]
+  gather_facts: False
+  remote_user: root
+  sudo: True
+  tasks:
+  - shell: /root/cluster_fix.sh chdir=/root

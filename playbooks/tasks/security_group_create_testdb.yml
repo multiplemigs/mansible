@@ -1,0 +1,17 @@
+---
+- name: Create test db security group
+  local_action: 
+    module: ec2_group
+    name: nightly-DB-test
+    description: Open access to ec2 test dev instances
+    region: us-east-1
+    #vpc_id: vpc-d57664b7
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 8080
+        to_port: 8080
+        cidr_ip: 0.0.0.0/0

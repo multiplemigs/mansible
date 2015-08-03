@@ -1,0 +1,3 @@
+---
+- name: install cmake
+  apt: name="cmake" state=latest

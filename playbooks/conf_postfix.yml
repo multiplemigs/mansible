@@ -1,0 +1,11 @@
+---
+- name: postfix NDAR setup
+  hosts: "{{ thost }}"
+  remote_user: ec2-user
+  sudo: True
+  tasks:
+  - service: name=postfix state=stopped
+  - file: path=/etc/postfix state=absent
+  - file: path=/etc/postfix state=directory mode=0755
+  - unarchive: src=/etc/varsansible/zips/pf.gz dest=/etc owner=root list_files=yes
+  - service: name=postfix state=started

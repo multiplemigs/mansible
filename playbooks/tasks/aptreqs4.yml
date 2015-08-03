@@ -1,0 +1,5 @@
+---
+- name: install liblzo2-dev
+  apt: name="liblzo2-dev" state=latest
+- name: install libhdf5-serial-dev
+  apt: name="libhdf5-serial-dev" state=latest

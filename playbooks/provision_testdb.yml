@@ -1,0 +1,9 @@
+---
+- name: Provision test db
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: False
+  tasks:
+  - include: tasks/security_group_create_testdb.yml
+  - include: tasks/launch_testdb.yml
+  - include: tasks/security_group_assign_testdb.yml
