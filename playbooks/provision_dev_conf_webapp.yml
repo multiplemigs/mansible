@@ -13,7 +13,7 @@
 #!#configure
 - name: ensure jenkins present
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: ec2-user
   sudo: True
   vars_files:
@@ -23,7 +23,7 @@
 
 - name: ensure tomcat present
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: ec2-user
   sudo: True
   vars_files:
@@ -33,41 +33,41 @@
 
 - name: shell work tomcat folder creation
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: tomcat
   sudo: False
   tasks:
-  - file: path=/home/tomcat/ndar state=directory owner=tomcat group=tomcat
+  - file: path=/home/tomcat/webapp state=directory owner=tomcat group=tomcat
 
-- name: Configure ndarweb dev
+- name: Configure webappweb dev
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: ec2-user
   sudo: True
   vars_files:
   - "/etc/varsansible/appvars/dev_vars_tomcat.yml"
   - "/etc/varsansible/secretvars/dev_secrets_tomcat.yml"
   roles:
-  - miguel.ndarweb
+  - miguel.webappweb
 
 - name: update tomcat known_hosts
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: ec2-user
   sudo: True
   tasks:
-    - lineinfile: dest=/home/tomcat/.ssh/known_hosts regexp="^54." line="54.165.18.92 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDk8P/Nh0dxyHcufi9YNWRzh24CuRZGOe4xkVSfjkA1owI+9oIz9VG0YEDnBL0zmzwREKUeU/nrraT5HBa4qFrG+7lmgzweB0NEGg24q6p50ufeVL8Q1X28i9hXw7v8dJ0kh8pvy66B3Z0vY5DoYl/ubziyxZQ1RO2IQWm6hdCgxBOD9TGb5r0iuVygxkMpA+GBLTKIe+UVfj6ndkoIt5Rw9jqt7fB5c2RV7QSjC6jGpdX59PQwtOI9GCcPUcFh8U3m34Lx1lOqa/0BBfT0IGK7fRqvd7LmvwW+laZVCeKyeyzUA6qDxhBdMYJ6Yd1y9v/yzBBXMLaMQZ1G+c8h1zm9"
+  - lineinfile: dest=/home/tomcat/.ssh/known_hosts regexp="^ {{ hostname }}" line="{{ hostname }} {{ key variable }}"
 
 - name: shell work for war movement
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: tomcat
   sudo: False
   tasks:
-  - shell: scp jenkins@jumphost:/home/jenkins/wars/ndarweb.war /home/tomcat/ndar/ndarweb.war chdir=/home/tomcat/ndar
+  - shell: scp jenkins@jumphost:/home/jenkins/wars/webappweb.war /home/tomcat/webapp/webappweb.war chdir=/home/tomcat/webapp
 
 - name: drop shell scripts
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: tomcat
   sudo: False
   tasks:
@@ -75,9 +75,9 @@
 
 - name: deploy war
   gather_facts: False
-  hosts: ["Devstack"]
+  hosts: ["{{ aws key var }}"]
   remote_user: tomcat
   sudo: False
   tasks:
-  #- shell: curl –T /home/tomcat/ndar/ndarweb.war http://jenkins:zUKnJcuWAoTXtdzupStO@localhost:8080/manager/text/deploy?path=/&update=true >> curl.log chdir=/home/tomcat/ndar
-  - shell: ./curldeploy.sh >> curl.log chdir=/home/tomcat/ndar
+  #- shell: curl –T /home/tomcat/webapp/webappweb.war http://jenkins:zUKnJcuWAoTXtdzupStO@localhost:8080/manager/text/deploy?path=/&update=true >> curl.log chdir=/home/tomcat/webapp
+  - shell: ./curldeploy.sh >> curl.log chdir=/home/tomcat/webapp
